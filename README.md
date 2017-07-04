@@ -114,7 +114,7 @@ int <PLUGIN_NAME>_init()
   //code plugin
 }
 </code></pre>
-   replacing <PLUGIN_NAME> with your plugin's name and write you code inside function. 
+   replacing PLUGIN_NAME with your plugin's name and write you code inside function. 
 
 2) Open bdcode.c and find this code into main():
 <pre><code>
@@ -127,11 +127,11 @@ int <PLUGIN_NAME>_init()
     #if SHELL == 1
       shell_init(argv[2]);
     #endif
-    #if <PLUGIN_NAME> == 1
-      <PLUGIN_NAME>_init();
+    #if PLUGIN_NAME == 1
+      PLUGIN_NAME_init();
     #endif
 </code></pre>
-   removing <PLUGIN_NAME> with you plugin's name.
+   removing PLUGIN_NAME with you plugin's name.
 
    TIPS EXAMPLE: You can start to write you plugin editing RAW plugin.
 
