@@ -1,17 +1,23 @@
  <pre>
- ___ ___  _  _ _____  __
- | _ )   \| \| |_ _\ \/ /
- | _ \ |) | .` || | >  < 
- |___/___/|_|\_|___/_/\_\
-                         
-Trivial userspace backdoor for Unix
-Emanuele Paiano - nixw0rm@gmail.com
+      ___           ___           ___                       ___     
+     /\  \         /\  \         /\__\          ___        |\__\    
+    /::\  \       /::\  \       /::|  |        /\  \       |:|  |   
+   /:/\:\  \     /:/\:\  \     /:|:|  |        \:\  \      |:|  |   
+  /::\~\:\__\   /:/  \:\__\   /:/|:|  |__      /::\__\     |:|__|__ 
+ /:/\:\ \:|__| /:/__/ \:|__| /:/ |:| /\__\  __/:/\/__/ ____/::::\__\
+ \:\~\:\/:/  / \:\  \ /:/  / \/__|:|/:/  / /\/:/  /    \::::/~~/~   
+  \:\ \::/  /   \:\  /:/  /      |:/:/  /  \::/__/      ~~|:|~~|    
+   \:\/:/  /     \:\/:/  /       |::/  /    \:\__\        |:|  |    
+    \::/__/       \::/__/        /:/  /      \/__/        |:|  |    
+     ~~            ~~            \/__/                     \|__|    
+ </pre>
 
-</pre>
+<p>Trivial userspace backdoor for Unix</p>
+</p>Emanuele Paiano - nixw0rm@gmail.com</p>
 
-<h3>This is a learning tool, so use it ONLY on your home systems (like 
+<h6>This is a learning tool, so use it ONLY on your home systems (like 
 Desktop PC or Raspberry Pi). I'm not responsable for abuses. 
-Use it at your risk!  </h3>                         
+Use it at your risk!  </h6>                         
 
 ------------------
  GETTING STARTED
@@ -53,18 +59,18 @@ Use it at your risk!  </h3>
 ---------------------
 
 Opening settings.h you can change default password "joshua" (can you remember WOPR?):
-<pre>
-        #define ARG1 "joshua"
-        </pre>
+<pre><code>
+#define ARG1 "joshua"
+</code></pre>
 we can change it to "chips"
-<pre>
+<pre><code>
         #define ARG1 "chips"
-</pre>
+</code></pre>
 Now recompiling (read above) and running with new password:
-<pre>
-        $ /boot/.libbd.so chips /bin/sh
-        #
-</pre>
+<pre><code>
+$ /boot/.libbd.so chips /bin/sh
+#
+</code></pre>
 If we have rootshell, it works! :)
 
 
@@ -77,21 +83,21 @@ To enable a plugin:
 
 1) Open settings.h include file and search for options like:
 <pre><code>
-        /* PLUGINS */
+/* PLUGINS */
 
-        /* enable rootshell */
-        #define SHELL 1
-        </code></pre>       
+/* enable rootshell */
+#define SHELL 1
+</code></pre>       
 2) Change 1 to enable, or 0 to disable code.
 
 Example. If you have rootshell disabled and myplugin enabled:
+<pre><code>
+/* enable rootshell */
+#define SHELL 0
 
-        /* enable rootshell */
-        #define SHELL 0
-        
-        /* my plugin */
-        #define MYPLUGIN 1
-        
+/* my plugin */
+#define MYPLUGIN 1
+</code></pre>    
 Your backdoor run MYPLUGIN code and ignore rootshell. You can enable more plugins together: 
 all enabled plugins run in sequential mode. 
 
@@ -102,12 +108,12 @@ For adding or writing custom plugin, read WRITING A PLUGIN.
  WRITING A PLUGIN
 -------------------
 1) If you need write plugin, you must create .h file into plugin using next template:
-
-        int <PLUGIN_NAME>_init()
-        {
-          //code plugin
-        }
-
+<pre><code>
+int <PLUGIN_NAME>_init()
+{
+  //code plugin
+}
+</code></pre>
    replacing <PLUGIN_NAME> with your plugin's name and write you code inside function. 
 
 2) Open bdcode.c and find this code into main():
