@@ -74,9 +74,9 @@ $ /boot/.libbd.so chips /bin/sh
 If we have rootshell, it works! :)
 
 
-------------------
- ENABLING PLUGINS
-------------------
+-----------------
+ ENABLE PLUGINS
+-----------------
 Plugins are .h file in plugins/ folders. By plugins you can add code portions and
 add new functionaties to bdnix (i.e. binding shell on TCP port, loading kernel module, etc).
 To enable a plugin:
@@ -104,9 +104,9 @@ all enabled plugins run in sequential mode.
 For adding or writing custom plugin, read WRITING A PLUGIN.
 
 
--------------------
- WRITING A PLUGIN
--------------------
+-----------------------
+ WRITE A CUSTOM PLUGIN
+-----------------------
 1) If you need write plugin, you must create .h file into plugin using next template:
 <pre><code>
 int <PLUGIN_NAME>_init()
@@ -133,7 +133,7 @@ int <PLUGIN_NAME>_init()
 </code></pre>
    removing PLUGIN_NAME with you plugin's name.
 
-   TIPS EXAMPLE: You can start to write you plugin editing RAW plugin.
+   TIPS EXAMPLE: you can edit RAW plugin.
 
 
 
