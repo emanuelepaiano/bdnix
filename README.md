@@ -51,8 +51,8 @@ Use it at your risk!  </h6>
 
 6) if you run without joshua password, you can read a (fake) error:
 <pre>
-   /bin/sh: cannot execute binary file
-   </pre>
+/bin/sh: cannot execute binary file
+</pre>
 
 ---------------------
  CUSTOMIZE PASSWORD
@@ -64,7 +64,7 @@ Opening settings.h you can change default password "joshua" (can you remember WO
 </code></pre>
 we can change it to "chips"
 <pre><code>
-        #define ARG1 "chips"
+#define ARG1 "chips"
 </code></pre>
 Now recompiling (read above) and running with new password:
 <pre><code>
@@ -117,20 +117,20 @@ int <PLUGIN_NAME>_init()
    replacing <PLUGIN_NAME> with your plugin's name and write you code inside function. 
 
 2) Open bdcode.c and find this code into main():
-
+<pre><code>
     #if SHELL == 1
       shell_init(argv[2]);
     #endif
-    
+</code></pre>
    and edit previos code in this:
-   
+<pre><code>
     #if SHELL == 1
       shell_init(argv[2]);
     #endif
     #if <PLUGIN_NAME> == 1
       <PLUGIN_NAME>_init();
     #endif
-
+</code></pre>
    removing <PLUGIN_NAME> with you plugin's name.
 
    TIPS EXAMPLE: You can start to write you plugin editing RAW plugin.
