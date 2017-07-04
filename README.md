@@ -118,18 +118,18 @@ int <PLUGIN_NAME>_init()
 
 2) Open bdcode.c and find this code into main():
 <pre><code>
-    #if SHELL == 1
-      shell_init(argv[2]);
-    #endif
+ #if SHELL == 1
+   shell_init(argv[2]);
+ #endif
 </code></pre>
    and edit previos code in this:
 <pre><code>
-    #if SHELL == 1
-      shell_init(argv[2]);
-    #endif
-    #if PLUGIN_NAME == 1
-      PLUGIN_NAME_init();
-    #endif
+ #if SHELL == 1
+   shell_init(argv[2]);
+ #endif
+ #if PLUGIN_NAME == 1
+   PLUGIN_NAME_init();
+ #endif
 </code></pre>
    removing PLUGIN_NAME with you plugin's name.
 
