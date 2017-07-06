@@ -133,6 +133,15 @@ int <PLUGIN_NAME>_init()
 </code></pre>
    remove PLUGIN_NAME with your plugin's name.
 
+3) Before main(), add these lines:
+<pre><code>
+#if PLUGIN_NAME == 1
+#include "plugin/PLUGIN_NAME.h"
+#endif
+</code></pre>
+
+and remove PLUGIN_NAME with your plugin's name.
+
    TIPS: you can edit RAW plugin.
 
 
