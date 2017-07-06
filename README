@@ -66,7 +66,7 @@ If we have rootshell, it works! :)
 
 
 ------------------
- ENABLING PLUGINS
+ ENABLE  PLUGINS
 ------------------
 Plugins are .h file in plugins/ folders. By plugins you can add code portions and
 add new functionaties to bdnix (i.e. binding shell on TCP port, loading kernel module, etc).
@@ -95,9 +95,9 @@ all enabled plugins run in sequential mode.
 For adding or writing custom plugin, read WRITING A PLUGIN.
 
 
--------------------
- WRITING A PLUGIN
--------------------
+------------------------
+ WRITE A CUSTOM PLUGIN
+------------------------
 1) If you need write plugin, you must create .h file into plugin using next template:
 
         int <PLUGIN_NAME>_init()
@@ -122,7 +122,15 @@ For adding or writing custom plugin, read WRITING A PLUGIN.
       <PLUGIN_NAME>_init();
     #endif
 
-   removing <PLUGIN_NAME> with you plugin's name.
+   removing <PLUGIN_NAME> with your plugin's name.
+   
+ 3) Before main() function add these lines:
+ 
+    #if <PLUGIN_NAME> == 1
+    #include "plugin/<PLUGIN_NAME>.h"
+    #endif
+
+    removing <PLUGIN_NAME> with your plugin's name.
 
    TIPS EXAMPLE: You can start to write you plugin editing RAW plugin.
 
