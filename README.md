@@ -59,11 +59,11 @@ Use it at your risk!  </h6>
  CUSTOMIZE PASSWORD
 ---------------------
 
-Open settings.h and change default password "joshua"
+Open settings.h and replace default password "joshua"
 <pre><code>
 #define ARG1 "joshua"
 </code></pre>
-to "chips"
+with "chips"
 <pre><code>
 #define ARG1 "chips"
 </code></pre>
