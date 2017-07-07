@@ -60,8 +60,8 @@ with "chips"
 
 Now recompile backdoor with "make" and test it with new password:
 
-$ /boot/.libbd.so chips /bin/sh
-#
+  $ /boot/.libbd.so chips /bin/sh
+  #
 
 it works! :)
 
